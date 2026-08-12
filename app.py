@@ -3,11 +3,13 @@ import streamlit as st
 import pandas as pd
 import re, unicodedata
 from difflib import SequenceMatcher
+from pathlib import Path
+
+AVATAR_PATH = Path(__file__).parent / "benedito_avatar.png"
 
 st.set_page_config(page_title="Benedito | Prefeitura de Macaé", page_icon="💬", layout="centered")
 
 ARQUIVO = "Base_Oficial_Benedito_1_1_Piloto.xlsx"
-
 @st.cache_data
 def carregar_base():
     df = pd.read_excel(ARQUIVO, sheet_name="Base_Oficial", dtype=str).fillna("")
