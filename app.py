@@ -86,8 +86,12 @@ if "historico" not in st.session_state:
     st.session_state.historico = []
 
 for papel, msg in st.session_state.historico:
-    with st.chat_message(papel):
-        st.markdown(msg)
+    if papel == "assistant":
+        with st.chat_message(papel, avatar=str(AVATAR_PATH)):
+            st.markdown(msg)
+    else:
+        with st.chat_message(papel):
+            st.markdown(msg)
 
 pergunta = st.chat_input("Ex.: Onde resolvo problema de ônibus?")
 if pergunta:
@@ -110,8 +114,8 @@ if pergunta:
         resp = resposta(row, pergunta)
 
     st.session_state.historico.append(("assistant", resp))
-    with st.chat_message("assistant"):
-        st.markdown(resp)
+with st.chat_message("assistant", avatar=str(AVATAR_PATH)):
+    st.markdown(resp)
 
 with st.sidebar:
     st.subheader("Sobre o protótipo")
