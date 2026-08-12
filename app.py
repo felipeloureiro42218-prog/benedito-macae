@@ -114,8 +114,8 @@ if pergunta:
         resp = resposta(row, pergunta)
 
     st.session_state.historico.append(("assistant", resp))
-with st.chat_message("assistant", avatar=str(AVATAR_PATH)):
-    st.markdown(resp)
+    with st.chat_message("assistant", avatar=str(AVATAR_PATH)):
+        st.markdown(resp)
 
 with st.sidebar:
     st.subheader("Sobre o protótipo")
